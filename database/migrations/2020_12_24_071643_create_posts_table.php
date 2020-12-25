@@ -17,13 +17,14 @@ class CreatePostsTable extends Migration
             $table->id();
 
 
-            $table->string('title', 180);
+            $table->string('title', 180)->unique();
+            $table->string('slug')->unique();
             $table->longText('content');
             $table->string('thumbnail', 255);
             $table->enum('status', ['draft', 'published'])->default('draft');
 
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('category_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
 
             $table->timestamps();
 

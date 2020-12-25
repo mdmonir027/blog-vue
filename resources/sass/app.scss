@@ -1,9 +1,7 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Variables
 @import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import "~admin-lte/dist/css/adminlte.css";
@@ -11,3 +9,4 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.css";
