@@ -27,6 +27,8 @@ const Toast = Swal.mixin({
 });
 window.Toast = Toast;
 
+//  mixins
+import './helpers/mixin';
 
 // VueX
 import Vuex from 'vuex'
@@ -42,6 +44,12 @@ window.axios = axios;
 
 // vue filter for time
 import filter from './Filter/Fitler'
+
+
+//  ckeditor
+import CKEditor from '@ckeditor/ckeditor5-vue2';
+
+Vue.use(CKEditor);
 
 // vue router
 Vue.use(VueRouter)

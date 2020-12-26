@@ -86,6 +86,22 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@ckeditor/ckeditor5-vue2/dist/ckeditor.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@ckeditor/ckeditor5-vue2/dist/ckeditor.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+!function(t,e){ true?module.exports=e(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js")):undefined}(window,(function(t){return function(t){var e={};function n(r){if(e[r])return e[r].exports;var i=e[r]={i:r,l:!1,exports:{}};return t[r].call(i.exports,i,i.exports,n),i.l=!0,i.exports}return n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var i in t)n.d(r,i,function(e){return t[e]}.bind(null,i));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=3)}([function(e,n){e.exports=t},function(t,e,n){"use strict";(function(t){var n="object"==typeof t&&t&&t.Object===Object&&t;e.a=n}).call(this,n(2))},function(t,e){var n;n=function(){return this}();try{n=n||new Function("return this")()}catch(t){"object"==typeof window&&(n=window)}t.exports=n},function(t,e,n){"use strict";n.r(e);var r=n(0),i=n.n(r);var o=function(t){var e=typeof t;return null!=t&&("object"==e||"function"==e)},u=n(1),a="object"==typeof self&&self&&self.Object===Object&&self,c=u.a||a||Function("return this")(),s=function(){return c.Date.now()},f=c.Symbol,l=Object.prototype,d=l.hasOwnProperty,p=l.toString,v=f?f.toStringTag:void 0;var y=function(t){var e=d.call(t,v),n=t[v];try{t[v]=void 0;var r=!0}catch(t){}var i=p.call(t);return r&&(e?t[v]=n:delete t[v]),i},h=Object.prototype.toString;var b=function(t){return h.call(t)},m=f?f.toStringTag:void 0;var g=function(t){return null==t?void 0===t?"[object Undefined]":"[object Null]":m&&m in Object(t)?y(t):b(t)};var j=function(t){return null!=t&&"object"==typeof t};var $=function(t){return"symbol"==typeof t||j(t)&&"[object Symbol]"==g(t)},O=/^\s+|\s+$/g,w=/^[-+]0x[0-9a-f]+$/i,_=/^0b[01]+$/i,x=/^0o[0-7]+$/i,S=parseInt;var E=function(t){if("number"==typeof t)return t;if($(t))return NaN;if(o(t)){var e="function"==typeof t.valueOf?t.valueOf():t;t=o(e)?e+"":e}if("string"!=typeof t)return 0===t?t:+t;t=t.replace(O,"");var n=_.test(t);return n||x.test(t)?S(t.slice(2),n?2:8):w.test(t)?NaN:+t},T=Math.max,D=Math.min;var N=function(t,e,n){var r,i,u,a,c,f,l=0,d=!1,p=!1,v=!0;if("function"!=typeof t)throw new TypeError("Expected a function");function y(e){var n=r,o=i;return r=i=void 0,l=e,a=t.apply(o,n)}function h(t){return l=t,c=setTimeout(m,e),d?y(t):a}function b(t){var n=t-f;return void 0===f||n>=e||n<0||p&&t-l>=u}function m(){var t=s();if(b(t))return g(t);c=setTimeout(m,function(t){var n=e-(t-f);return p?D(n,u-(t-l)):n}(t))}function g(t){return c=void 0,v&&r?y(t):(r=i=void 0,a)}function j(){var t=s(),n=b(t);if(r=arguments,i=this,f=t,n){if(void 0===c)return h(f);if(p)return clearTimeout(c),c=setTimeout(m,e),y(f)}return void 0===c&&(c=setTimeout(m,e)),a}return e=E(e)||0,o(n)&&(d=!!n.leading,u=(p="maxWait"in n)?T(E(n.maxWait)||0,e):u,v="trailing"in n?!!n.trailing:v),j.cancel=function(){void 0!==c&&clearTimeout(c),l=0,r=f=i=c=void 0},j.flush=function(){return void 0===c?a:g(s())},j};var k={name:"ckeditor",render(t){return t(this.tagName)},props:{editor:{type:Function,default:null},value:{type:String,default:""},config:{type:Object,default:()=>({})},tagName:{type:String,default:"div"},disabled:{type:Boolean,default:!1}},data:()=>({$_instance:null,$_lastEditorData:{type:String,default:""}}),mounted(){const t=Object.assign({},this.config);this.value&&(t.initialData=this.value),this.editor.create(this.$el,t).then(t=>{this.$_instance=t,t.isReadOnly=this.disabled,this.$_setUpEditorEvents(),this.$emit("ready",t)}).catch(t=>{console.error(t)})},beforeDestroy(){this.$_instance&&(this.$_instance.destroy(),this.$_instance=null),this.$emit("destroy",this.$_instance)},watch:{value(t,e){t!==e&&t!==this.$_lastEditorData&&this.$_instance.setData(t)},disabled(t){this.$_instance.isReadOnly=t}},methods:{$_setUpEditorEvents(){const t=this.$_instance,e=N(e=>{const n=this.$_lastEditorData=t.getData();this.$emit("input",n,e,t)},300,{leading:!0});t.model.document.on("change:data",e),t.editing.view.document.on("focus",e=>{this.$emit("focus",e,t)}),t.editing.view.document.on("blur",e=>{this.$emit("blur",e,t)})}}};const M=i.a?i.a.version:r.version,[P]=M.split(".").map(t=>parseInt(t,10));if(2!==P)throw new Error("The CKEditor plugin works only with Vue 2.x. For more information, please refer to https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/vuejs-v2.html");const F={install(t){t.component("ckeditor",k)},component:k};e.default=F}]).default}));
+//# sourceMappingURL=ckeditor.js.map
+
+/***/ }),
+
 /***/ "./node_modules/admin-lte/dist/js/adminlte.min.js":
 /*!********************************************************!*\
   !*** ./node_modules/admin-lte/dist/js/adminlte.min.js ***!
@@ -2297,24 +2313,14 @@ __webpack_require__.r(__webpack_exports__);
     remove: function remove(slug) {
       var _this = this;
 
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "All related post with this categories will also delete!. You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.isConfirmed) {
-          axios["delete"]("/api/category/" + slug).then(function (response) {
-            _this.$store.dispatch('getCategories');
+      this.swalDelete(function () {
+        axios["delete"]("/api/category/" + slug).then(function (response) {
+          _this.$store.dispatch('getCategories');
 
-            Swal.fire('Deleted!', response.data, 'success');
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        }
+          Swal.fire('Deleted!', response.data, 'success');
+        })["catch"](function (error) {
+          console.log(error);
+        });
       });
     },
     emptyData: function emptyData() {
@@ -2336,28 +2342,18 @@ __webpack_require__.r(__webpack_exports__);
 
       var slugs = this.selected;
       var this_ = this;
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "All related post with this categories will also delete!. You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.isConfirmed) {
-          axios.post("/api/remove-selected-category", {
-            'slugs': slugs
-          }).then(function (response) {
-            _this3.$store.dispatch('getCategories');
+      this.swalDelete(function () {
+        axios.post("/api/remove-selected-category", {
+          'slugs': slugs
+        }).then(function (response) {
+          _this3.$store.dispatch('getCategories');
 
-            this_.selectAllData = false;
-            this_.selected = [];
-            Swal.fire('Deleted!', response.data, 'success');
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        }
+          this_.selectAllData = false;
+          this_.selected = [];
+          Swal.fire('Deleted!', response.data, 'success');
+        })["catch"](function (error) {
+          console.log(error);
+        });
       });
     },
     activeSelectedCategory: function activeSelectedCategory() {
@@ -2371,7 +2367,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.$store.dispatch('getCategories');
 
         this_.selected = [];
-        Swal.fire('Deleted!', response.data, 'success');
+        Swal.fire('Activated!', response.data, 'success');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2387,7 +2383,7 @@ __webpack_require__.r(__webpack_exports__);
         _this5.$store.dispatch('getCategories');
 
         this_.selected = [];
-        Swal.fire('Deleted!', response.data, 'success');
+        Swal.fire('Deactivated!', response.data, 'success');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2461,15 +2457,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AddCategory",
   data: function data() {
     return {
       form: new Form({
-        name: null,
-        status: 1
+        title: null,
+        status: 1,
+        category: '',
+        thumbnail: ''
       })
     };
+  },
+  computed: {
+    getActiveCategories: function getActiveCategories() {
+      return this.$store.getters.getActiveCategories;
+    }
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('getActiveCategories');
   },
   methods: {
     addCategory: function addCategory() {
@@ -2481,6 +2517,18 @@ __webpack_require__.r(__webpack_exports__);
         });
         ThisOrigin.$router.push('/category/manage');
       });
+    },
+    thumbnailLoad: function thumbnailLoad(event) {
+      var _this = this;
+
+      var file = event.target.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onload = function (e) {
+        _this.form.thumbnail = e.target.result;
+      };
+
+      fileReader.readAsDataURL(file);
     }
   }
 });
@@ -2718,24 +2766,14 @@ __webpack_require__.r(__webpack_exports__);
     remove: function remove(slug) {
       var _this = this;
 
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.isConfirmed) {
-          axios["delete"]("/api/post/" + slug).then(function (response) {
-            _this.$store.dispatch('getPosts');
+      this.swalDelete(function () {
+        axios["delete"]("/api/post/" + slug).then(function (response) {
+          _this.$store.dispatch('getPosts');
 
-            Swal.fire('Deleted!', response.data, 'success');
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        }
+          Swal.fire('Deleted!', response.data, 'success');
+        })["catch"](function (error) {
+          console.log(error);
+        });
       });
     },
     emptyData: function emptyData() {
@@ -2757,28 +2795,18 @@ __webpack_require__.r(__webpack_exports__);
 
       var slugs = this.selected;
       var this_ = this;
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "All related post with this categories will also delete!. You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.isConfirmed) {
-          axios.post("/api/remove-selected-post", {
-            'slugs': slugs
-          }).then(function (response) {
-            _this3.$store.dispatch('getPosts');
+      this.swalDelete(function () {
+        axios.post("/api/remove-selected-post", {
+          'slugs': slugs
+        }).then(function (response) {
+          _this3.$store.dispatch('getPosts');
 
-            this_.selectAllData = false;
-            this_.selected = [];
-            Swal.fire('Deleted!', response.data, 'success');
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        }
+          this_.selectAllData = false;
+          this_.selected = [];
+          Swal.fire('Deleted!', response.data, 'success');
+        })["catch"](function (error) {
+          console.log(error);
+        });
       });
     },
     publishSelectedPosts: function publishSelectedPosts() {
@@ -65474,7 +65502,48 @@ var render = function() {
                   _c(
                     "label",
                     { staticClass: "col-md-3", attrs: { for: "name" } },
-                    [_vm._v("Category Name")]
+                    [_vm._v("Category")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-md-9" },
+                    [
+                      _c(
+                        "select",
+                        {
+                          staticClass: "form-control",
+                          attrs: { name: "category" }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Select A Category")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.getActiveCategories, function(category) {
+                            return _c(
+                              "option",
+                              { domProps: { value: category.slug } },
+                              [_vm._v(_vm._s(category.name))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "title" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    { staticClass: "col-md-3", attrs: { for: "name" } },
+                    [_vm._v("Tittle")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -65486,33 +65555,72 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form.name,
-                            expression: "form.name"
+                            value: _vm.form.title,
+                            expression: "form.title"
                           }
                         ],
-                        staticClass: "form-control col-md-9",
-                        class: { "is-invalid": _vm.form.errors.has("name") },
+                        staticClass: "form-control",
+                        class: { "is-invalid": _vm.form.errors.has("title") },
                         attrs: {
                           type: "text",
+                          name: "title",
                           id: "name",
                           placeholder: "Enter Category Name"
                         },
-                        domProps: { value: _vm.form.name },
+                        domProps: { value: _vm.form.title },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.form, "name", $event.target.value)
+                            _vm.$set(_vm.form, "title", $event.target.value)
                           }
                         }
                       }),
                       _vm._v(" "),
                       _c("has-error", {
-                        attrs: { form: _vm.form, field: "name" }
+                        attrs: { form: _vm.form, field: "title" }
                       })
                     ],
                     1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    { staticClass: "col-md-3", attrs: { for: "name" } },
+                    [_vm._v("Thumbnail")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-md-9 d-flex justify-content-between" },
+                    [
+                      _c(
+                        "div",
+                        [
+                          _c("input", {
+                            attrs: { type: "file", name: "thumbnail", id: "" },
+                            on: {
+                              change: function($event) {
+                                return _vm.thumbnailLoad($event)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "title" }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticClass: "w-25",
+                        attrs: { src: _vm.form.thumbnail, alt: "" }
+                      })
+                    ]
                   )
                 ]),
                 _vm._v(" "),
@@ -65854,7 +65962,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "btn btn-primary float-right",
-                attrs: { to: "/category/add" }
+                attrs: { to: "/post/add" }
               },
               [_vm._v("Add New")]
             )
@@ -82679,11 +82787,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _store_Store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store/Store */ "./resources/js/store/Store.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _Filter_Fitler__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Filter/Fitler */ "./resources/js/Filter/Fitler.js");
+/* harmony import */ var _helpers_mixin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers/mixin */ "./resources/js/helpers/mixin.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _store_Store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./store/Store */ "./resources/js/store/Store.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _Filter_Fitler__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Filter/Fitler */ "./resources/js/Filter/Fitler.js");
+/* harmony import */ var _ckeditor_ckeditor5_vue2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ckeditor/ckeditor5-vue2 */ "./node_modules/@ckeditor/ckeditor5-vue2/dist/ckeditor.js");
+/* harmony import */ var _ckeditor_ckeditor5_vue2__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_vue2__WEBPACK_IMPORTED_MODULE_9__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -82708,17 +82819,22 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
     toast.addEventListener('mouseleave', sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.resumeTimer);
   }
 });
-window.Toast = Toast; // VueX
+window.Toast = Toast; //  mixins
+
+ // VueX
 
 
 
-Vue.use(vuex__WEBPACK_IMPORTED_MODULE_4__["default"]);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_4__["default"].Store(_store_Store__WEBPACK_IMPORTED_MODULE_5__["default"]); // Axios
+Vue.use(vuex__WEBPACK_IMPORTED_MODULE_5__["default"]);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_5__["default"].Store(_store_Store__WEBPACK_IMPORTED_MODULE_6__["default"]); // Axios
 
 
-window.axios = axios__WEBPACK_IMPORTED_MODULE_6___default.a; // vue filter for time
+window.axios = axios__WEBPACK_IMPORTED_MODULE_7___default.a; // vue filter for time
 
- // vue router
+ //  ckeditor
+
+
+Vue.use(_ckeditor_ckeditor5_vue2__WEBPACK_IMPORTED_MODULE_9___default.a); // vue router
 
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -83333,6 +83449,39 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/helpers/mixin.js":
+/*!***************************************!*\
+  !*** ./resources/js/helpers/mixin.js ***!
+  \***************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+window.Vue = vue__WEBPACK_IMPORTED_MODULE_0___default.a;
+Vue.mixin({
+  methods: {
+    swalDelete: function swalDelete(callback) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "All related post with this categories will also delete!. You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.isConfirmed) callback();
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/router/routes.js":
 /*!***************************************!*\
   !*** ./resources/js/router/routes.js ***!
@@ -83394,11 +83543,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
     getPosts: [],
-    getCategories: []
+    getCategories: [],
+    getActiveCategories: []
   },
   getters: {
     getCategories: function getCategories(state) {
       return state.getCategories;
+    },
+    getActiveCategories: function getActiveCategories(state) {
+      return state.getActiveCategories;
     },
     getPosts: function getPosts(state) {
       return state.getPosts;
@@ -83408,6 +83561,13 @@ __webpack_require__.r(__webpack_exports__);
     getCategories: function getCategories(data) {
       axios.get("/api/category ").then(function (response) {
         data.commit('getCategories', response.data.categories);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getActiveCategories: function getActiveCategories(data) {
+      axios.get("/api/active/category ").then(function (response) {
+        data.commit('getActiveCategories', response.data.categories);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -83423,6 +83583,9 @@ __webpack_require__.r(__webpack_exports__);
   mutations: {
     getCategories: function getCategories(state, data) {
       return state.getCategories = data;
+    },
+    getActiveCategories: function getActiveCategories(state, data) {
+      return state.getActiveCategories = data;
     },
     getPosts: function getPosts(state, data) {
       return state.getPosts = data;

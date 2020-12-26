@@ -142,4 +142,10 @@ class CategoryController extends Controller
         }
         return response()->json("All Data Deactiveted!", 200);
     }
+
+    public function all_active_category(){
+        $categories = Category::where('status' , 1)->get();
+
+        return response()->json(['categories' => $categories] , 200);
+    }
 }

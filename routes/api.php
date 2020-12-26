@@ -23,6 +23,7 @@ Route::apiResource('post' , \App\Http\Controllers\Admin\PostController::class);
 Route::post('/remove-selected-category' , [\App\Http\Controllers\Admin\CategoryController::class ,'remove_selected_category' ]);
 Route::post('/active-selected-category' , [\App\Http\Controllers\Admin\CategoryController::class ,'active_selected_category' ]);
 Route::post('/inactive-selected-category' , [\App\Http\Controllers\Admin\CategoryController::class ,'inactive_selected_category' ]);
+Route::get('/active/category' , [\App\Http\Controllers\Admin\CategoryController::class ,'all_active_category' ]);
 
 
 Route::post('/remove-selected-post' , [\App\Http\Controllers\Admin\PostController::class ,'remove_selected_posts' ]);

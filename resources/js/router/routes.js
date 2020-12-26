@@ -7,7 +7,7 @@ import AddPost from "../components/admin/post/AddPost";
 import EditPost from "../components/admin/post/EditPost";
 
 
-export  const routes = [
+export const routes = [
     { path: '/home', component: Home },
     { path: '/category/manage', component: ManageCategories },
     { path: '/category/add', component: AddCategory },
@@ -15,5 +15,5 @@ export  const routes = [
 
     { path: '/post/manage', component: ManagePosts },
     { path: '/post/add', component: AddPost },
-    { path: '/post/edit/:slug', component: EditPost},
+    { path: '/post/edit/:slug', component: EditPost },
 ]

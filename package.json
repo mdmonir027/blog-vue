@@ -24,6 +24,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^24.0.0",
+        "@ckeditor/ckeditor5-vue2": "^1.0.5",
         "@fortawesome/fontawesome-free": "^5.15.1",
         "admin-lte": "^3.1.0-rc",
         "bootstrap-toggle": "^2.2.2",

@@ -12,12 +12,42 @@
                         <div class="card-body">
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-3">Category Name</label>
+                                <label for="name" class="col-md-3">Category</label>
                                 <div class="col-md-9">
-                                    <input type="text" v-model="form.name" class="form-control col-md-9" id="name"
+                                   <select name="category" class='form-control'>
+
+
+                                        <option value="">Select A Category</option>
+                                        <option :value="category.slug" v-for="category in getActiveCategories">{{ category.name }}</option>
+
+                                   </select>
+                                    <has-error :form="form" field="title"></has-error>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-3">Tittle</label>
+                                <div class="col-md-9">
+                                    <input type="text" v-model="form.title" name="title" class="form-control" id="name"
                                            placeholder="Enter Category Name"
-                                           :class="{ 'is-invalid': form.errors.has('name') }">
-                                    <has-error :form="form" field="name"></has-error>
+                                           :class="{ 'is-invalid': form.errors.has('title') }">
+                                    <has-error :form="form" field="title"></has-error>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-3">Thumbnail</label>
+                                <div class="col-md-9 d-flex justify-content-between">
+                                    <div>
+                                        <input type="file" name="thumbnail" id="" @change="thumbnailLoad($event)">
+                                        <has-error :form="form" field="title"></has-error>
+                                    </div>
+                                   
+                                   <img :src="form.thumbnail" class='w-25' alt="">
 
                                 </div>
 
@@ -59,11 +89,22 @@
         data: function () {
             return {
                 form: new Form({
-                    name: null,
-                    status: 1
+                    title: null,
+                    status: 1 ,
+                    category: '',
+                    thumbnail: '',
                 })
             }
         },
+        computed: {
+            getActiveCategories() {
+                return this.$store.getters.getActiveCategories
+            }
+        },
+        mounted() {
+            this.$store.dispatch('getActiveCategories')
+        },        
+        
         methods: {
             addCategory: function () {
                 const ThisOrigin = this;
@@ -77,6 +118,14 @@
 
                         ThisOrigin.$router.push('/category/manage');
                     })
+            },
+            thumbnailLoad(event) {
+                let file = event.target.files[0];
+                let fileReader = new FileReader();
+                fileReader.onload = e => {
+                    this.form.thumbnail = e.target.result;
+                }
+                fileReader.readAsDataURL(file);
             }
         }
     }

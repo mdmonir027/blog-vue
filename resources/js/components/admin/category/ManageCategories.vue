@@ -108,32 +108,22 @@
             },
             remove(slug) {
 
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "All related post with this categories will also delete!. You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
+                 this.swalDelete(()=>{
 
-                        axios.delete("/api/category/" + slug)
-                            .then((response) => {
-                                this.$store.dispatch('getCategories');
+                    axios.delete("/api/category/" + slug)
+                        .then((response) => {
+                            this.$store.dispatch('getCategories');
 
-                                Swal.fire(
-                                    'Deleted!',
-                                    response.data,
-                                    'success'
-                                )
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
-                    }
-                })
+                            Swal.fire(
+                                'Deleted!',
+                                response.data,
+                                'success'
+                            )
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                });
 
             },
             emptyData() {
@@ -154,34 +144,24 @@
             removeSelectedCategory(){
                 let slugs = this.selected;
                 let this_ = this;
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "All related post with this categories will also delete!. You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        axios.post("/api/remove-selected-category" , {'slugs': slugs})
-                            .then((response) => {
-                                this.$store.dispatch('getCategories');
-                                
-                                this_.selectAllData = false;
-                                this_.selected = [];
-                                Swal.fire(
-                                    'Deleted!',
-                                    response.data,
-                                    'success'
-                                )
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
-                    }
-                })
-
+                
+                this.swalDelete(()=>{
+                    axios.post("/api/remove-selected-category" , {'slugs': slugs})
+                        .then((response) => {
+                            this.$store.dispatch('getCategories');
+                            
+                            this_.selectAllData = false;
+                            this_.selected = [];
+                            Swal.fire(
+                                'Deleted!',
+                                response.data,
+                                'success'
+                            )
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                });
 
                
             } ,
@@ -193,7 +173,7 @@
                         this.$store.dispatch('getCategories');
                           this_.selected = [];
                         Swal.fire(
-                            'Deleted!',
+                            'Activated!',
                             response.data,
                             'success'
                         )
@@ -210,7 +190,7 @@
                         this.$store.dispatch('getCategories');
                         this_.selected = [];
                         Swal.fire(
-                            'Deleted!',
+                            'Deactivated!',
                             response.data,
                             'success'
                         )
