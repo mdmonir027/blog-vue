@@ -14,14 +14,16 @@
                             <div class="form-group row">
                                 <label for="name" class="col-md-2">Category</label>
                                 <div class="col-md-10">
-                                   <select name="category" class='form-control' v-model="form.category" >
+                                    <select name="category" class='form-control' v-model="form.category" :class="{ 'is-invalid': form.errors.has('category') }">
 
 
                                         <option value="">Select A Category</option>
-                                        <option :value="category.slug" v-for="category in getActiveCategories">{{ category.name }}</option>
+                                        <option :value="category.slug" v-for="category in getActiveCategories">{{
+                                            category.name }}
+                                        </option>
 
-                                   </select>
-                                    <has-error :form="form" field="title"></has-error>
+                                    </select>
+                                    <has-error :form="form" field="category"></has-error>
 
                                 </div>
 
@@ -42,7 +44,8 @@
                             <div class="form-group row">
                                 <label for="name" class="col-md-2">Content</label>
                                 <div class="col-md-10">
-                                    <ckeditor :editor="editor" v-model="form.contentText" :config="editorConfig"  :class="{ 'is-invalid': form.errors.has('contentText') }"></ckeditor>
+                                    <ckeditor :editor="editor" v-model="form.contentText" :config="editorConfig"
+                                              :class="{ 'is-invalid': form.errors.has('contentText') }"></ckeditor>
                                     <has-error :form="form" field="contentText"></has-error>
 
                                 </div>
@@ -55,14 +58,19 @@
                                     <div>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" name="thumbnail" id="thumbnailImage" @change="thumbnailLoad($event)">
-                                                <label class="custom-file-label" v-html="thumbnailName" for="thumbnailImage"></label>
+                                                <input type="file" class="custom-file-input" name="thumbnail"
+                                                       id="thumbnailImage" @change="thumbnailLoad($event)"
+                                                       :class="{ 'is-invalid': form.errors.has('thumbnail') }">
+                                                <label class="custom-file-label" v-html="thumbnailName"
+                                                       for="thumbnailImage"
+                                                       :class="{ 'is-invalid': form.errors.has('thumbnail') }"></label>
+                                                <has-error :form="form" field="thumbnail"></has-error>
                                             </div>
                                         </div>
-                                        <has-error :form="form" field="title"></has-error>
+
                                     </div>
 
-                                   <img :src="form.thumbnail" class='w-25' alt="">
+                                    <img :src="form.thumbnail" class='w-25' alt="">
 
                                 </div>
 
@@ -73,13 +81,13 @@
                                 <div class="form-group col-md-10 clearfix">
                                     <div class="icheck-primary d-inline">
                                         <input type="radio" id="active" name="status" v-model="form.status" value="1">
-                                        <label for="active"> Active </label>
+                                        <label for="active"> Published </label>
                                     </div>
                                     <div class="icheck-primary d-inline">
                                         <input type="radio" id="inactive" v-model="form.status" value="0" name="status">
-                                        <label for="inactive"> Inactive </label>
+                                        <label for="inactive"> Draft </label>
                                     </div>
-                                    <span :class="{ 'is-invalid': form.errors.has('status') }" ></span>
+                                    <span :class="{ 'is-invalid': form.errors.has('status') }"></span>
                                     <has-error :form="form" field="status"></has-error>
                                 </div>
                             </div>
@@ -101,19 +109,20 @@
 <script>
 
     import ClassEditor from '@ckeditor/ckeditor5-build-classic'
+
     export default {
         name: "AddCategory",
         data: function () {
             return {
                 form: new Form({
                     title: null,
-                    status: 1 ,
+                    status: 1,
                     category: '',
                     contentText: null,
                     thumbnail: '',
                 }),
-                thumbnailName: 'Choose File' ,
-                editor: ClassEditor ,
+                thumbnailName: 'Choose File',
+                editor: ClassEditor,
                 editorConfig: {}
             }
         },
@@ -132,13 +141,12 @@
                 this.form.post('/api/post')
                     .then(function (response) {
 
-                        console.log(response);
-                        // Toast.fire({
-                        //     icon: 'success',
-                        //     title: response.data
-                        // })
+                        Toast.fire({
+                            icon: 'success',
+                            title: response.data
+                        })
 
-                        // ThisOrigin.$router.push('/post/manage');
+                        ThisOrigin.$router.push('/post/manage');
                     })
             },
             thumbnailLoad(event) {

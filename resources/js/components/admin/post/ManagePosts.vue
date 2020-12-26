@@ -18,7 +18,7 @@
                             <th style="width: 10px">#</th>
                             <th>Title</th>
                             <th>Category</th>
-                            <!-- <th>Thumbnail</th> -->
+                             <th>Thumbnail</th>
                             <th>Created By</th>
                             <th>Created At</th>
                             <th>Status</th>
@@ -33,7 +33,7 @@
                             <td>{{ ++index }}</td>
                             <td>{{ post.title }}</td>
                             <td>{{ post.category.name}}</td>
-                            <!-- <td><img width="100px" :src="post.thumbnail" alt=""></td> -->
+                             <td><img width="100px" :src="fileLink(post.thumbnail)" alt=""></td>
                             <td>{{ post.user.name }}</td>
                             <td>{{ post.created_at | time }}</td>
 
@@ -56,7 +56,7 @@
                                     <button @click="removeSelectedPosts"  class="dropdown-item">Remove</button>
                                     <button @click="publishSelectedPosts"  class="dropdown-item">Publish</button>
                                     <button @click="draftSelectedPosts"  class="dropdown-item">Draft</button>
-                            
+
                                 </div>
                             </div>
                         </tr>
@@ -91,13 +91,13 @@
         },
         mounted() {
             this.$store.dispatch('getPosts')
-        },        
+        },
         watch: {
             selected(selected){
                 this.isSelected = selected.length > 0;
                 this.selectAllData = (selected.length === this.posts.length);
             }
-        },        
+        },
         methods: {
             statusName: (status) => {
                 const data = {draft: 'Inactive', 1: 'Active'}
@@ -123,7 +123,7 @@
                         .catch((error) => {
                             console.log(error)
                         })
-                    
+
                 });
 
             },
@@ -131,7 +131,7 @@
                 return this.posts.length < 1;
             },
             selectAll(){
-                
+
                 if(event.target.checked === false ) {
                     this.selected = [];
                 }else{
@@ -143,7 +143,7 @@
             removeSelectedPosts(){
                 let slugs = this.selected;
                 let this_ = this;
-                 this.swalDelete(()=>{ 
+                 this.swalDelete(()=>{
                     axios.post("/api/remove-selected-post" , {'slugs': slugs})
                         .then((response) => {
                             this.$store.dispatch('getPosts');
@@ -158,9 +158,9 @@
                         .catch((error) => {
                             console.log(error)
                         })
-                
+
                 });
-               
+
             } ,
             publishSelectedPosts(){
                 let slugs = this.selected;
@@ -195,6 +195,9 @@
                     .catch((error) => {
                         console.log(error)
                     })
+            },
+            fileLink: (name)=>{
+                return '/uploads/post/' + name;
             }
         }
     }

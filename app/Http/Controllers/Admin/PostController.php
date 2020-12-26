@@ -20,58 +20,60 @@ class PostController extends Controller
     {
         $posts = Post::with(['user', 'category'])->get();
 
-        return  response()->json(['posts' => $posts], 200);
+        return response()->json(['posts' => $posts], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
-            'title' =>  'required | min:10 | max: 100 | unique:posts',
-            'status' =>  'required | unique:posts',
-            'category' =>  'required',
-            'contentText' =>  'required | min: 200',
-            'thumbnail' =>  'required',
+            'title' => 'required | min:10 | max: 100 | unique:posts',
+            'status' => 'required',
+            'category' => 'required',
+            'contentText' => 'required | min: 200',
+            'thumbnail' => 'required',
         ]);
 
         $imageFile = $request->thumbnail;
-        $fileExe = explode(';' , $imageFile);
+        $fileExe = explode(';', $imageFile);
         $fileExe = explode('/', $fileExe[0]);
         $fileExe = end($fileExe);
 
-        $category = Category::where('slug' , $request->category)->get()->first();
+        $category = Category::where('slug', $request->category)->get()->first();
 
         $slug = Str::slug($request->title);
-        $fileName = $slug.'.'.$fileExe;
+        $fileName = $slug . '.' . $fileExe;
 
+//         status
+        $status = $request->status == 1 ? 'published' : 'Draft';
 
         $add = Post::create([
-            'title' =>  $request->title,
-            'slug' =>  $slug,
-            'status' =>  $request->status,
-            'category_id' =>  $category->id,
-            'content' =>  $request->contentText,
-            'thumbnail' =>  $fileName,
+            'title' => $request->title,
+            'slug' => $slug,
+            'status' => $status,
+            'category_id' => $category->id,
+            'content' => $request->contentText,
+            'thumbnail' => $fileName,
             'user_id' => 1,
         ]);
 
-        if($add){
-            Image::make($request->thumbnail)->resize(300, 200)->save(public_path('uploads/post/'.$fileName));
+        if ($add) {
+            Image::make($request->thumbnail)->resize(700, 300)->save(public_path('uploads/post/' . $fileName));
         }
 
-        return  response()->json('success' , 200);
+        return response()->json('Post Added Successfully!', 200);
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -82,8 +84,8 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -94,14 +96,16 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
+        $fileName = $post->thumbnail;
+        file_exists('uploads/post/' . $fileName) ? unlink('uploads/post/' . $fileName) : false;
         $post->delete();
-        return  response()->json('Post Deleted Successfully!', 200);
+        return response()->json('Post Deleted Successfully!', 200);
     }
 
 
@@ -112,7 +116,12 @@ class PostController extends Controller
         $slugs = $request->slugs;
 
         foreach ($slugs as $slug) {
+
             $post = Post::where('slug', $slug)->firstOrFail();
+
+            $fileName = $post->thumbnail;
+            file_exists('uploads/post/' . $fileName) ? unlink('uploads/post/' . $fileName) : false;
+
             $delete = $post->delete();
             if (!$delete) {
                 return response()->json('Error', 204);
@@ -136,6 +145,7 @@ class PostController extends Controller
         }
         return response()->json("All Selected Post Published!", 200);
     }
+
     public function draft_selected_posts(Request $request)
     {
 

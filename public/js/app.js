@@ -2520,6 +2520,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AddCategory",
@@ -2549,11 +2557,11 @@ __webpack_require__.r(__webpack_exports__);
     addPost: function addPost() {
       var ThisOrigin = this;
       this.form.post('/api/post').then(function (response) {
-        console.log(response); // Toast.fire({
-        //     icon: 'success',
-        //     title: response.data
-        // })
-        // ThisOrigin.$router.push('/post/manage');
+        Toast.fire({
+          icon: 'success',
+          title: response.data
+        });
+        ThisOrigin.$router.push('/post/manage');
       });
     },
     thumbnailLoad: function thumbnailLoad(event) {
@@ -2879,6 +2887,9 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    fileLink: function fileLink(name) {
+      return '/uploads/post/' + name;
     }
   }
 });
@@ -65556,6 +65567,9 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form.errors.has("category")
+                          },
                           attrs: { name: "category" },
                           on: {
                             change: function($event) {
@@ -65586,7 +65600,12 @@ var render = function() {
                             return _c(
                               "option",
                               { domProps: { value: category.slug } },
-                              [_vm._v(_vm._s(category.name))]
+                              [
+                                _vm._v(
+                                  _vm._s(category.name) +
+                                    "\n                                    "
+                                )
+                              ]
                             )
                           })
                         ],
@@ -65594,7 +65613,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("has-error", {
-                        attrs: { form: _vm.form, field: "title" }
+                        attrs: { form: _vm.form, field: "category" }
                       })
                     ],
                     1
@@ -65692,13 +65711,17 @@ var render = function() {
                     "div",
                     { staticClass: "col-md-10 d-flex justify-content-between" },
                     [
-                      _c(
-                        "div",
-                        [
-                          _c("div", { staticClass: "input-group" }, [
-                            _c("div", { staticClass: "custom-file" }, [
+                      _c("div", [
+                        _c("div", { staticClass: "input-group" }, [
+                          _c(
+                            "div",
+                            { staticClass: "custom-file" },
+                            [
                               _c("input", {
                                 staticClass: "custom-file-input",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("thumbnail")
+                                },
                                 attrs: {
                                   type: "file",
                                   name: "thumbnail",
@@ -65713,20 +65736,23 @@ var render = function() {
                               _vm._v(" "),
                               _c("label", {
                                 staticClass: "custom-file-label",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("thumbnail")
+                                },
                                 attrs: { for: "thumbnailImage" },
                                 domProps: {
                                   innerHTML: _vm._s(_vm.thumbnailName)
                                 }
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "thumbnail" }
                               })
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("has-error", {
-                            attrs: { form: _vm.form, field: "title" }
-                          })
-                        ],
-                        1
-                      ),
+                            ],
+                            1
+                          )
+                        ])
+                      ]),
                       _vm._v(" "),
                       _c("img", {
                         staticClass: "w-25",
@@ -65772,7 +65798,7 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("label", { attrs: { for: "active" } }, [
-                          _vm._v(" Active ")
+                          _vm._v(" Published ")
                         ])
                       ]),
                       _vm._v(" "),
@@ -65801,7 +65827,7 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("label", { attrs: { for: "inactive" } }, [
-                          _vm._v(" Inactive ")
+                          _vm._v(" Draft ")
                         ])
                       ]),
                       _vm._v(" "),
@@ -66137,6 +66163,8 @@ var render = function() {
                 _vm._v(" "),
                 _c("th", [_vm._v("Category")]),
                 _vm._v(" "),
+                _c("th", [_vm._v("Thumbnail")]),
+                _vm._v(" "),
                 _c("th", [_vm._v("Created By")]),
                 _vm._v(" "),
                 _c("th", [_vm._v("Created At")]),
@@ -66200,6 +66228,16 @@ var render = function() {
                     _c("td", [_vm._v(_vm._s(post.title))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(post.category.name))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("img", {
+                        attrs: {
+                          width: "100px",
+                          src: _vm.fileLink(post.thumbnail),
+                          alt: ""
+                        }
+                      })
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(post.user.name))]),
                     _vm._v(" "),
