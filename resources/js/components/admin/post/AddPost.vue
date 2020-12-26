@@ -3,18 +3,18 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="float-left">Manage Categories</h3>
-                    <router-link to="/category/manage" class="btn btn-primary float-right">Manage Category</router-link>
+                    <h3 class="float-left">Add Posts</h3>
+                    <router-link to="/post/manage" class="btn btn-primary float-right">Manage Posts</router-link>
                 </div>
 
                 <div class="card-body">
-                    <form role="form" @submit.prevent="addCategory">
+                    <form role="form" @submit.prevent="addPost">
                         <div class="card-body">
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-2">Category</label>
                                 <div class="col-md-10">
-                                   <select name="category" class='form-control'>
+                                   <select name="category" class='form-control' v-model="form.category" >
 
 
                                         <option value="">Select A Category</option>
@@ -42,8 +42,8 @@
                             <div class="form-group row">
                                 <label for="name" class="col-md-2">Content</label>
                                 <div class="col-md-10">
-                                    <ckeditor :editor="editor" v-model="form.content" :config="editorConfig" ></ckeditor>
-                                    <has-error :form="form" field="title"></has-error>
+                                    <ckeditor :editor="editor" v-model="form.contentText" :config="editorConfig"  :class="{ 'is-invalid': form.errors.has('contentText') }"></ckeditor>
+                                    <has-error :form="form" field="contentText"></has-error>
 
                                 </div>
 
@@ -61,7 +61,7 @@
                                         </div>
                                         <has-error :form="form" field="title"></has-error>
                                     </div>
-                                   
+
                                    <img :src="form.thumbnail" class='w-25' alt="">
 
                                 </div>
@@ -109,7 +109,7 @@
                     title: null,
                     status: 1 ,
                     category: '',
-                    content: null,
+                    contentText: null,
                     thumbnail: '',
                 }),
                 thumbnailName: 'Choose File' ,
@@ -124,20 +124,21 @@
         },
         mounted() {
             this.$store.dispatch('getActiveCategories')
-        },        
-        
+        },
+
         methods: {
-            addCategory: function () {
+            addPost: function () {
                 const ThisOrigin = this;
-                this.form.post('/api/category')
+                this.form.post('/api/post')
                     .then(function (response) {
 
-                        Toast.fire({
-                            icon: 'success',
-                            title: response.data
-                        })
+                        console.log(response);
+                        // Toast.fire({
+                        //     icon: 'success',
+                        //     title: response.data
+                        // })
 
-                        ThisOrigin.$router.push('/category/manage');
+                        // ThisOrigin.$router.push('/post/manage');
                     })
             },
             thumbnailLoad(event) {

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Image;
 
 class PostController extends Controller
 {
@@ -15,9 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['user' , 'category'])->get();
+        $posts = Post::with(['user', 'category'])->get();
 
-        return  response()->json(['posts' => $posts],200);
+        return  response()->json(['posts' => $posts], 200);
     }
 
     /**
@@ -29,9 +32,40 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'status' => 'required'
+            'title' =>  'required | min:10 | max: 100 | unique:posts',
+            'status' =>  'required | unique:posts',
+            'category' =>  'required',
+            'contentText' =>  'required | min: 200',
+            'thumbnail' =>  'required',
         ]);
+
+        $imageFile = $request->thumbnail;
+        $fileExe = explode(';' , $imageFile);
+        $fileExe = explode('/', $fileExe[0]);
+        $fileExe = end($fileExe);
+
+        $category = Category::where('slug' , $request->category)->get()->first();
+
+        $slug = Str::slug($request->title);
+        $fileName = $slug.'.'.$fileExe;
+
+
+        $add = Post::create([
+            'title' =>  $request->title,
+            'slug' =>  $slug,
+            'status' =>  $request->status,
+            'category_id' =>  $category->id,
+            'content' =>  $request->contentText,
+            'thumbnail' =>  $fileName,
+            'user_id' => 1,
+        ]);
+
+        if($add){
+            Image::make($request->thumbnail)->resize(300, 200)->save(public_path('uploads/post/'.$fileName));
+        }
+
+        return  response()->json('success' , 200);
+
     }
 
     /**
@@ -65,9 +99,9 @@ class PostController extends Controller
      */
     public function destroy($slug)
     {
-        $post = Post::where('slug' , $slug)->firstOrFail();
+        $post = Post::where('slug', $slug)->firstOrFail();
         $post->delete();
-        return  response()->json('Post Deleted Successfully!' , 200);
+        return  response()->json('Post Deleted Successfully!', 200);
     }
 
 

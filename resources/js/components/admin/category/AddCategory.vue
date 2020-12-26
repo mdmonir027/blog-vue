@@ -3,12 +3,12 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="float-left">Manage Categories</h3>
-                    <router-link to="/category/manage" class="btn btn-primary float-right">Manage Category</router-link>
+                    <h3 class="float-left">Add Category </h3>
+                    <router-link to="/category/manage" class="btn btn-primary float-right">Manage Categories</router-link>
                 </div>
 
                 <div class="card-body">
-                    <form role="form" @submit.prevent="addCategory">
+                    <form role="form" @submit.prevent="addPost">
                         <div class="card-body">
 
                             <div class="form-group row">
@@ -65,7 +65,7 @@
             }
         },
         methods: {
-            addCategory: function () {
+            addPost: function () {
                 const ThisOrigin = this;
                 this.form.post('/api/category')
                     .then(function (response) {

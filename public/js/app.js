@@ -2085,7 +2085,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    addCategory: function addCategory() {
+    addPost: function addPost() {
       var ThisOrigin = this;
       this.form.post('/api/category').then(function (response) {
         Toast.fire({
@@ -2529,7 +2529,7 @@ __webpack_require__.r(__webpack_exports__);
         title: null,
         status: 1,
         category: '',
-        content: null,
+        contentText: null,
         thumbnail: ''
       }),
       thumbnailName: 'Choose File',
@@ -2546,14 +2546,14 @@ __webpack_require__.r(__webpack_exports__);
     this.$store.dispatch('getActiveCategories');
   },
   methods: {
-    addCategory: function addCategory() {
+    addPost: function addPost() {
       var ThisOrigin = this;
-      this.form.post('/api/category').then(function (response) {
-        Toast.fire({
-          icon: 'success',
-          title: response.data
-        });
-        ThisOrigin.$router.push('/category/manage');
+      this.form.post('/api/post').then(function (response) {
+        console.log(response); // Toast.fire({
+        //     icon: 'success',
+        //     title: response.data
+        // })
+        // ThisOrigin.$router.push('/post/manage');
       });
     },
     thumbnailLoad: function thumbnailLoad(event) {
@@ -64799,9 +64799,7 @@ var render = function() {
           "div",
           { staticClass: "card-header" },
           [
-            _c("h3", { staticClass: "float-left" }, [
-              _vm._v("Manage Categories")
-            ]),
+            _c("h3", { staticClass: "float-left" }, [_vm._v("Add Category ")]),
             _vm._v(" "),
             _c(
               "router-link",
@@ -64809,7 +64807,7 @@ var render = function() {
                 staticClass: "btn btn-primary float-right",
                 attrs: { to: "/category/manage" }
               },
-              [_vm._v("Manage Category")]
+              [_vm._v("Manage Categories")]
             )
           ],
           1
@@ -64823,7 +64821,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.addCategory($event)
+                  return _vm.addPost($event)
                 }
               }
             },
@@ -65507,17 +65505,15 @@ var render = function() {
           "div",
           { staticClass: "card-header" },
           [
-            _c("h3", { staticClass: "float-left" }, [
-              _vm._v("Manage Categories")
-            ]),
+            _c("h3", { staticClass: "float-left" }, [_vm._v("Add Posts")]),
             _vm._v(" "),
             _c(
               "router-link",
               {
                 staticClass: "btn btn-primary float-right",
-                attrs: { to: "/category/manage" }
+                attrs: { to: "/post/manage" }
               },
-              [_vm._v("Manage Category")]
+              [_vm._v("Manage Posts")]
             )
           ],
           1
@@ -65531,7 +65527,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.addCategory($event)
+                  return _vm.addPost($event)
                 }
               }
             },
@@ -65551,8 +65547,35 @@ var render = function() {
                       _c(
                         "select",
                         {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.category,
+                              expression: "form.category"
+                            }
+                          ],
                           staticClass: "form-control",
-                          attrs: { name: "category" }
+                          attrs: { name: "category" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.form,
+                                "category",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
                         },
                         [
                           _c("option", { attrs: { value: "" } }, [
@@ -65637,18 +65660,21 @@ var render = function() {
                     { staticClass: "col-md-10" },
                     [
                       _c("ckeditor", {
+                        class: {
+                          "is-invalid": _vm.form.errors.has("contentText")
+                        },
                         attrs: { editor: _vm.editor, config: _vm.editorConfig },
                         model: {
-                          value: _vm.form.content,
+                          value: _vm.form.contentText,
                           callback: function($$v) {
-                            _vm.$set(_vm.form, "content", $$v)
+                            _vm.$set(_vm.form, "contentText", $$v)
                           },
-                          expression: "form.content"
+                          expression: "form.contentText"
                         }
                       }),
                       _vm._v(" "),
                       _c("has-error", {
-                        attrs: { form: _vm.form, field: "title" }
+                        attrs: { form: _vm.form, field: "contentText" }
                       })
                     ],
                     1
