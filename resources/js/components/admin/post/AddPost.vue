@@ -1,6 +1,6 @@
 <template>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Manage Categories</h3>
@@ -12,8 +12,8 @@
                         <div class="card-body">
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-3">Category</label>
-                                <div class="col-md-9">
+                                <label for="name" class="col-md-2">Category</label>
+                                <div class="col-md-10">
                                    <select name="category" class='form-control'>
 
 
@@ -28,8 +28,8 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-3">Tittle</label>
-                                <div class="col-md-9">
+                                <label for="name" class="col-md-2">Tittle</label>
+                                <div class="col-md-10">
                                     <input type="text" v-model="form.title" name="title" class="form-control" id="name"
                                            placeholder="Enter Category Name"
                                            :class="{ 'is-invalid': form.errors.has('title') }">
@@ -40,10 +40,25 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-3">Thumbnail</label>
-                                <div class="col-md-9 d-flex justify-content-between">
+                                <label for="name" class="col-md-2">Content</label>
+                                <div class="col-md-10">
+                                    <ckeditor :editor="editor" v-model="form.content" :config="editorConfig" ></ckeditor>
+                                    <has-error :form="form" field="title"></has-error>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-2">Thumbnail</label>
+                                <div class="col-md-10 d-flex justify-content-between">
                                     <div>
-                                        <input type="file" name="thumbnail" id="" @change="thumbnailLoad($event)">
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="thumbnail" id="thumbnailImage" @change="thumbnailLoad($event)">
+                                                <label class="custom-file-label" v-html="thumbnailName" for="thumbnailImage"></label>
+                                            </div>
+                                        </div>
                                         <has-error :form="form" field="title"></has-error>
                                     </div>
                                    
@@ -54,8 +69,8 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-3">Satus</label>
-                                <div class="form-group col-md-9 clearfix">
+                                <label for="name" class="col-md-2">Satus</label>
+                                <div class="form-group col-md-10 clearfix">
                                     <div class="icheck-primary d-inline">
                                         <input type="radio" id="active" name="status" v-model="form.status" value="1">
                                         <label for="active"> Active </label>
@@ -84,6 +99,8 @@
 </template>
 
 <script>
+
+    import ClassEditor from '@ckeditor/ckeditor5-build-classic'
     export default {
         name: "AddCategory",
         data: function () {
@@ -92,8 +109,12 @@
                     title: null,
                     status: 1 ,
                     category: '',
+                    content: null,
                     thumbnail: '',
-                })
+                }),
+                thumbnailName: 'Choose File' ,
+                editor: ClassEditor ,
+                editorConfig: {}
             }
         },
         computed: {
@@ -126,6 +147,7 @@
                     this.form.thumbnail = e.target.result;
                 }
                 fileReader.readAsDataURL(file);
+                this.thumbnailName = file.name;
             }
         }
     }
