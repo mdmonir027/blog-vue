@@ -40,7 +40,7 @@
                             <td><span class="badge" :class="statusColor(post.status)"> {{ post.status | firstUpperCase }}</span>
                             </td>
                             <td>
-                                <router-link :to="`/category/edit/${post.slug}`" type="button" class="btn btn-warning btn-sm">Edit</router-link>
+                                <router-link :to="`/post/edit/${post.slug}`" type="button" class="btn btn-warning btn-sm">Edit</router-link>
                                 <button type="button" class="btn btn-danger btn-sm" @click="remove(post.slug)">
                                     Delete
                                 </button>
@@ -170,7 +170,7 @@
                         this.$store.dispatch('getPosts');
                           this_.selected = [];
                         Swal.fire(
-                            'Deleted!',
+                            'Published!',
                             response.data,
                             'success'
                         )
@@ -187,7 +187,7 @@
                         this.$store.dispatch('getPosts');
                         this_.selected = [];
                         Swal.fire(
-                            'Deleted!',
+                            'Drafted!',
                             response.data,
                             'success'
                         )

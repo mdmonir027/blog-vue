@@ -11,6 +11,10 @@ use Image;
 
 class PostController extends Controller
 {
+
+
+    protected $imagePath = "/uploads/post/";
+
     /**
      * Display a listing of the resource.
      *
@@ -63,7 +67,7 @@ class PostController extends Controller
         ]);
 
         if ($add) {
-            Image::make($request->thumbnail)->resize(700, 300)->save(public_path('uploads/post/' . $fileName));
+            Image::make($request->thumbnail)->resize(700, 300)->save(public_path($this->imagePath . $fileName));
         }
 
         return response()->json('Post Added Successfully!', 200);
@@ -76,21 +80,60 @@ class PostController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $post = Post::with('category')->where('slug', $slug)->firstOrFail();
+
+        return response()->json(['post' => $post], 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param string $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $post = Post::where('slug', $slug)->get()->first();
+
+//        return response()->json($request);
+
+        $request->validate([
+            'title' => 'required | min:10 | max: 100 | unique:posts,title,' . $post->id,
+            'status' => 'required',
+            'category' => 'required',
+            'contentText' => 'required | min: 200',
+            'thumbnail' => 'required',
+        ]);
+
+        $category = Category::find($post->category_id);
+        $status = $request->status == 1 ? 'published' : 'Draft';
+
+        $post->status = $status;
+        $post->title = $request->title;
+        $post->category_id = $category->id;
+        $post->content = $request->contentText;
+
+
+        if ($request->thumbnail != $this->imagePath . $post->thumbnail) {
+
+            $imageFile = $request->thumbnail;
+            $fileExe = explode(';', $imageFile);
+            $fileExe = explode('/', $fileExe[0]);
+            $fileExe = end($fileExe);
+            $fileName = $slug . '.' . $fileExe;
+
+            $post->thumbnail = $fileName;
+            file_exists($this->imagePath . $post->thumbnail) ? unlink($this->imagePath . $post->thumbnail) : false;
+            Image::make($request->thumbnail)->resize(700, 300)->save(public_path($this->imagePath . $fileName));
+
+        }
+        $post->save();
+
+        return response()->json('Post Updated Successfully!' , 200);
+
     }
 
     /**
@@ -120,7 +163,7 @@ class PostController extends Controller
             $post = Post::where('slug', $slug)->firstOrFail();
 
             $fileName = $post->thumbnail;
-            file_exists('uploads/post/' . $fileName) ? unlink('uploads/post/' . $fileName) : false;
+            file_exists($this->imagePath . $fileName) ? unlink($this->imagePath . $fileName) : false;
 
             $delete = $post->delete();
             if (!$delete) {
