@@ -2321,17 +2321,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PublicFooter"
 });
@@ -25682,122 +25671,90 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "copyright-bar" }, [
           _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "col-xs-12 col-sm-6 no-padding social" }, [
-              _c("ul", { staticClass: "link" }, [
-                _c("li", { staticClass: "fb pull-left" }, [
-                  _c("a", {
-                    attrs: {
-                      target: "_blank",
-                      rel: "nofollow",
-                      href: "#",
-                      title: "Facebook"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "tw pull-left" }, [
-                  _c("a", {
-                    attrs: {
-                      target: "_blank",
-                      rel: "nofollow",
-                      href: "#",
-                      title: "Twitter"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "googleplus pull-left" }, [
-                  _c("a", {
-                    attrs: {
-                      target: "_blank",
-                      rel: "nofollow",
-                      href: "#",
-                      title: "GooglePlus"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "rss pull-left" }, [
-                  _c("a", {
-                    attrs: {
-                      target: "_blank",
-                      rel: "nofollow",
-                      href: "#",
-                      title: "RSS"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "pintrest pull-left" }, [
-                  _c("a", {
-                    attrs: {
-                      target: "_blank",
-                      rel: "nofollow",
-                      href: "#",
-                      title: "PInterest"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "linkedin pull-left" }, [
-                  _c("a", {
-                    attrs: {
-                      target: "_blank",
-                      rel: "nofollow",
-                      href: "#",
-                      title: "Linkedin"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "youtube pull-left" }, [
-                  _c("a", {
-                    attrs: {
-                      target: "_blank",
-                      rel: "nofollow",
-                      href: "#",
-                      title: "Youtube"
-                    }
-                  })
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-xs-12 col-sm-6 no-padding" }, [
-              _c("div", { staticClass: "clearfix payment-methods" }, [
-                _c("ul", [
-                  _c("li", [
-                    _c("img", {
-                      attrs: { src: "assets/images/payments/1.png", alt: "" }
+            _c(
+              "div",
+              { staticClass: "col-xs-12 col-sm-12 no-padding social" },
+              [
+                _c("ul", { staticClass: "link" }, [
+                  _c("li", { staticClass: "fb pull-left" }, [
+                    _c("a", {
+                      attrs: {
+                        target: "_blank",
+                        rel: "nofollow",
+                        href: "#",
+                        title: "Facebook"
+                      }
                     })
                   ]),
                   _vm._v(" "),
-                  _c("li", [
-                    _c("img", {
-                      attrs: { src: "assets/images/payments/2.png", alt: "" }
+                  _c("li", { staticClass: "tw pull-left" }, [
+                    _c("a", {
+                      attrs: {
+                        target: "_blank",
+                        rel: "nofollow",
+                        href: "#",
+                        title: "Twitter"
+                      }
                     })
                   ]),
                   _vm._v(" "),
-                  _c("li", [
-                    _c("img", {
-                      attrs: { src: "assets/images/payments/3.png", alt: "" }
+                  _c("li", { staticClass: "googleplus pull-left" }, [
+                    _c("a", {
+                      attrs: {
+                        target: "_blank",
+                        rel: "nofollow",
+                        href: "#",
+                        title: "GooglePlus"
+                      }
                     })
                   ]),
                   _vm._v(" "),
-                  _c("li", [
-                    _c("img", {
-                      attrs: { src: "assets/images/payments/4.png", alt: "" }
+                  _c("li", { staticClass: "rss pull-left" }, [
+                    _c("a", {
+                      attrs: {
+                        target: "_blank",
+                        rel: "nofollow",
+                        href: "#",
+                        title: "RSS"
+                      }
                     })
                   ]),
                   _vm._v(" "),
-                  _c("li", [
-                    _c("img", {
-                      attrs: { src: "assets/images/payments/5.png", alt: "" }
+                  _c("li", { staticClass: "pintrest pull-left" }, [
+                    _c("a", {
+                      attrs: {
+                        target: "_blank",
+                        rel: "nofollow",
+                        href: "#",
+                        title: "PInterest"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "linkedin pull-left" }, [
+                    _c("a", {
+                      attrs: {
+                        target: "_blank",
+                        rel: "nofollow",
+                        href: "#",
+                        title: "Linkedin"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "youtube pull-left" }, [
+                    _c("a", {
+                      attrs: {
+                        target: "_blank",
+                        rel: "nofollow",
+                        href: "#",
+                        title: "Youtube"
+                      }
                     })
                   ])
                 ])
-              ])
-            ])
+              ]
+            )
           ])
         ])
       ]

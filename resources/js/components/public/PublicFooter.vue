@@ -102,7 +102,7 @@
 
         <div class="copyright-bar">
             <div class="container">
-                <div class="col-xs-12 col-sm-6 no-padding social">
+                <div class="col-xs-12 col-sm-12 no-padding social">
                     <ul class="link">
                         <li class="fb pull-left"><a target="_blank" rel="nofollow" href="#" title="Facebook"></a>
                         </li>
@@ -121,17 +121,6 @@
                                                          title="Youtube"></a>
                         </li>
                     </ul>
-                </div>
-                <div class="col-xs-12 col-sm-6 no-padding">
-                    <div class="clearfix payment-methods">
-                        <ul>
-                            <li><img src="assets/images/payments/1.png" alt=""></li>
-                            <li><img src="assets/images/payments/2.png" alt=""></li>
-                            <li><img src="assets/images/payments/3.png" alt=""></li>
-                            <li><img src="assets/images/payments/4.png" alt=""></li>
-                            <li><img src="assets/images/payments/5.png" alt=""></li>
-                        </ul>
-                    </div><!-- /.payment-methods -->
                 </div>
             </div>
         </div>
