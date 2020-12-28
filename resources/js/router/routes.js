@@ -8,12 +8,11 @@ import EditPost from "../components/admin/post/EditPost";
 
 
 export const routes = [
-    { path: '/home', component: Home },
-    { path: '/category/manage', component: ManageCategories },
-    { path: '/category/add', component: AddCategory },
-    { path: '/category/edit/:slug', component: EditCategory },
-
-    { path: '/post/manage', component: ManagePosts },
-    { path: '/post/add', component: AddPost },
-    { path: '/post/edit/:slug', component: EditPost },
+    { path: '/admin/home', component: Home , meta:  {title: 'Dashboard'} },
+    { path: '/admin/category/manage', component: ManageCategories , meta: {title: 'Manage Categories' }},
+    { path: '/admin/category/add', component: AddCategory , meta: {title: 'Add Category'} },
+    { path: '/admin/category/edit/:slug', component: EditCategory , meta: {title: 'Update Category'} },
+    { path: '/admin/post/manage', component: ManagePosts , meta: {title: 'Manage Posts'} },
+    { path: '/admin/post/add', component: AddPost , meta: {title: 'Add Post'} },
+    { path: '/admin/post/edit/:slug', component: EditPost , meta: {title: 'Update Post'} },
 ]

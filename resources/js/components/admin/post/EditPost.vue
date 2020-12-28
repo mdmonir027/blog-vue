@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Edit Posts</h3>
-                    <router-link to="/post/manage" class="btn btn-primary float-right">Manage Posts</router-link>
+                    <router-link to="/admin/post/manage" class="btn btn-primary float-right">Manage Posts</router-link>
                 </div>
 
                 <div class="card-body">
@@ -147,7 +147,7 @@
                             icon: 'success',
                             title: response.data
                         })
-                        this_.$router.push('/post/manage');
+                        this_.$router.push('/admin/post/manage');
                     })
                     .catch((error) => {
                         console.log(error)

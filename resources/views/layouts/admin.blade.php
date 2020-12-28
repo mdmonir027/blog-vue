@@ -166,7 +166,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <router-link to="/home" class="nav-link">
+                        <router-link to="/admin/home" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                Dashboard
@@ -175,7 +175,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <router-link to="/category/manage" class="nav-link">
+                        <router-link to="/admin/category/manage" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Categories
@@ -183,7 +183,7 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/post/manage" class="nav-link">
+                        <router-link to="/admin/post/manage" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Post

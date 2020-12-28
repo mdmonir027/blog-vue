@@ -1,3 +1,5 @@
+import PublicHeader from "./components/public/PublicHeader";
+
 window.Vue = require('vue');
 import VueRouter from 'vue-router'
 import './helpers/mixin';
@@ -19,13 +21,17 @@ window.axios = axios;
 Vue.use(VueRouter)
 const router = new VueRouter({
     routes,
-    'mode': 'history'
+    'mode': 'history',
+    linkActiveClass: "active",
+    linkExactActiveClass: "exact-active",
 })
 
-Vue.component('master' , require('./components/public/Master').default);
+Vue.component('master' ,  require('./components/public/Master').default);
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 const app = new Vue({
     el: '#content',
     router,
-    store
+    store,
+
 });

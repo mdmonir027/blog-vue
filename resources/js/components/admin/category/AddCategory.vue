@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Add Category </h3>
-                    <router-link to="/category/manage" class="btn btn-primary float-right">Manage Categories</router-link>
+                    <router-link to="/admin/category/manage" class="btn btn-primary float-right">Manage Categories</router-link>
                 </div>
 
                 <div class="card-body">
@@ -75,7 +75,7 @@
                             title: response.data
                         })
 
-                        ThisOrigin.$router.push('/category/manage');
+                        ThisOrigin.$router.push('/admin/category/manage');
                     })
             }
         }

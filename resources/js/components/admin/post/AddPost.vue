@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Add Posts</h3>
-                    <router-link to="/post/manage" class="btn btn-primary float-right">Manage Posts</router-link>
+                    <router-link to="/admin/post/manage" class="btn btn-primary float-right">Manage Posts</router-link>
                 </div>
 
                 <div class="card-body">
@@ -146,7 +146,7 @@
                             title: response.data
                         })
 
-                        ThisOrigin.$router.push('/post/manage');
+                        ThisOrigin.$router.push('/admin/post/manage');
                     })
             },
             thumbnailLoad(event) {

@@ -58,6 +58,13 @@ const router = new VueRouter({
     'mode': 'history'
 })
 
+router.beforeEach((to,from,next) => {
+
+        document.title = to.meta.title
+        next();
+
+});
+
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 const app = new Vue({

@@ -14,9 +14,9 @@ const mix = require('laravel-mix');
 // // mixin for admin panel
 // mix.js('resources/js/app.js', 'public/js')
 //     .sass('resources/sass/app.scss', 'public/css');
+
 //
-//
-// // mixin for frontend
+// mixin for frontend
 // mix.scripts([
 //     'resources/sass/public/js/jquery-1.11.1.min.js',
 //     'resources/sass/public/js/bootstrap.min.js',
@@ -29,6 +29,7 @@ const mix = require('laravel-mix');
 //         "resources/sass/public/css/main.css",
 //         "resources/sass/public/css/blue.css",
 //         "resources/sass/public/css/font-awesome.css",
+//         "resources/sass/public/css/custom.css",
 //     ], "public/css/public.css")
 
 mix.js('resources/js/public.js', 'public/js/fronted.js')

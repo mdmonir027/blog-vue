@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Manage Posts</h3>
-                    <router-link to="/post/add" class="btn btn-primary float-right">Add New</router-link>
+                    <router-link to="/admin/post/add" class="btn btn-primary float-right">Add New</router-link>
                 </div>
 
                 <div class="card-body">
@@ -40,7 +40,7 @@
                             <td><span class="badge" :class="statusColor(post.status)"> {{ post.status | firstUpperCase }}</span>
                             </td>
                             <td>
-                                <router-link :to="`/post/edit/${post.slug}`" type="button" class="btn btn-warning btn-sm">Edit</router-link>
+                                <router-link :to="`/admin/post/edit/${post.slug}`" type="button" class="btn btn-warning btn-sm">Edit</router-link>
                                 <button type="button" class="btn btn-danger btn-sm" @click="remove(post.slug)">
                                     Delete
                                 </button>

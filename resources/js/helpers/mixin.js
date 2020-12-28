@@ -18,6 +18,9 @@ Vue.mixin({
                 if (result.isConfirmed) callback();
             })
 
+        },
+        subStrWithHtml: function (text, length, s) {
+            return text.substring(0, length) + s;
         }
     }
 })

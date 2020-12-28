@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Manage Categories</h3>
-                    <router-link to="/category/manage" class="btn btn-primary float-right">Manage Category</router-link>
+                    <router-link to="/admin/category/manage" class="btn btn-primary float-right">Manage Category</router-link>
                 </div>
 
                 <div class="card-body">
@@ -87,7 +87,7 @@
                             icon: 'success',
                             title: response.data
                         })
-                        this_.$router.push('/category/manage');
+                        this_.$router.push('/admin/category/manage');
                     })
             }
         },

@@ -1,19 +1,19 @@
 export default {
     state: {
         posts: [],
-        categories: []
+        categories: [],
     },
     getters: {
-       categories(state) {
+        categories(state) {
             return state.categories;
         },
         posts(state) {
             return state.posts;
-        }
+        },
     },
     actions: {
         categories(data) {
-            axios.get("/api/category ")
+            axios.get("/api/public/categories ")
                 .then((response) => {
                     data.commit('categories', response.data.categories)
                 })
@@ -22,14 +22,14 @@ export default {
                 })
         },
         posts(data) {
-            axios.get("/api/post")
+            axios.get("/api/public/posts")
                 .then((response) => {
                     data.commit('posts', response.data.posts)
                 })
                 .catch((error) => {
                     console.log(error)
                 })
-        }
+        },
     },
     mutations: {
         categories(state, data) {

@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="float-left">Manage Categories</h3>
-                    <router-link to="/category/add" class="btn btn-primary float-right">Add New</router-link>
+                    <router-link to="/admin/category/add" class="btn btn-primary float-right">Add New</router-link>
                 </div>
 
                 <div class="card-body">
@@ -36,7 +36,7 @@
                                       :class="statusColor(category.status)"> {{ statusName(category.status) }}</span>
                             </td>
                             <td>
-                                <router-link :to="`/category/edit/${category.slug}`" type="button"
+                                <router-link :to="`/admin/category/edit/${category.slug}`" type="button"
                                              class="btn btn-warning btn-sm">Edit
                                 </router-link>
                                 <button type="button" class="btn btn-danger btn-sm" @click="remove(category.slug)">
@@ -54,7 +54,7 @@
                                     <button @click="removeSelectedCategory"  class="dropdown-item">Remove</button>
                                     <button @click="activeSelectedCategory"  class="dropdown-item">Active</button>
                                     <button @click="inactiveSelectedCategory"  class="dropdown-item">Inactive</button>
-                            
+
                                 </div>
                             </div>
                         </tr>
@@ -75,6 +75,9 @@
 <script>
     export default {
         name: "ManageCategories",
+        meta: {
+          title: 'Manage Categories'
+        },
         data:()=> {
             return {
                 selected: [],
@@ -89,14 +92,14 @@
         },
         mounted() {
             this.$store.dispatch('getCategories');
-           
+
         },
         watch: {
             selected(selected){
                 this.isSelected = selected.length > 0;
                 this.selectAllData = (selected.length === this.categories.length);
             }
-        },        
+        },
         methods: {
             statusName: (status) => {
                 const data = {0: 'Inactive', 1: 'Active'}
@@ -131,7 +134,7 @@
             } ,
 
             selectAll(){
-                
+
                 if(event.target.checked === false ) {
                     this.selected = [];
                 }else{
@@ -144,12 +147,12 @@
             removeSelectedCategory(){
                 let slugs = this.selected;
                 let this_ = this;
-                
+
                 this.swalDelete(()=>{
                     axios.post("/api/remove-selected-category" , {'slugs': slugs})
                         .then((response) => {
                             this.$store.dispatch('getCategories');
-                            
+
                             this_.selectAllData = false;
                             this_.selected = [];
                             Swal.fire(
@@ -163,7 +166,7 @@
                         })
                 });
 
-               
+
             } ,
             activeSelectedCategory(){
                 let slugs = this.selected;

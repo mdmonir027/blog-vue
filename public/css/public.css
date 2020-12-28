@@ -8520,3 +8520,36 @@ left:0px
   overflow: visible;
   clip: auto;
 }
+
+.active{
+    background: transparent !important;
+}
+.exact-active{
+    background: #fff !important;
+    border-radius: 3px 3px 0 0;
+    color: #333 !important;
+}
+.logo .exact-active ,
+.logo .active{
+    background: transparent !important;
+
+}
+
+.blog-post{
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+.body-content{
+    margin-top: 20px !important;
+}
+
+.pagination.justify-content-center{
+    display: flex !important;
+    justify-content: center;
+    margin: 50px 0;
+}
+
+.mt-10{
+    margin-top: 10px !important;
+}

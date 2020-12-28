@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('public');
-});
+Route::get('/', [App\Http\Controllers\Site\SiteController::class , 'home'])->name('public.home');
+Route::get('/s/{any}', [App\Http\Controllers\Site\SiteController::class , 'home'])->where('any' , '.*');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::any('/{any}', [App\Http\Controllers\HomeController::class, 'index'])->where('any' , '.*');
+Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::any('/admin/{any}', [App\Http\Controllers\HomeController::class, 'index'])->where('any' , '.*');

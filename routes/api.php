@@ -29,3 +29,9 @@ Route::get('/active/category' , [\App\Http\Controllers\Admin\CategoryController:
 Route::post('/remove-selected-post' , [\App\Http\Controllers\Admin\PostController::class ,'remove_selected_posts' ]);
 Route::post('/publish-selected-post' , [\App\Http\Controllers\Admin\PostController::class ,'published_selected_posts' ]);
 Route::post('/draft-selected-post' , [\App\Http\Controllers\Admin\PostController::class ,'draft_selected_posts' ]);
+
+Route::get('/public/categories' , [\App\Http\Controllers\Site\SiteController::class , 'active_categories'])->name('public.categories');
+Route::get('/public/posts' , [\App\Http\Controllers\Site\SiteController::class , 'all_post'])->name('public.all_post');
+Route::get('/public/post/{slug}' , [\App\Http\Controllers\Site\SiteController::class , 'post'])->name('public.post');
+Route::get('/public/post/category/{slug}' , [\App\Http\Controllers\Site\SiteController::class , 'category_post'])->name('public.category.post');
+Route::get('/public/category/{slug}' , [\App\Http\Controllers\Site\SiteController::class , 'category'])->name('public.category');

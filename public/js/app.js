@@ -2092,7 +2092,7 @@ __webpack_require__.r(__webpack_exports__);
           icon: 'success',
           title: response.data
         });
-        ThisOrigin.$router.push('/category/manage');
+        ThisOrigin.$router.push('/admin/category/manage');
       });
     }
   }
@@ -2194,7 +2194,7 @@ __webpack_require__.r(__webpack_exports__);
           icon: 'success',
           title: response.data
         });
-        this_.$router.push('/category/manage');
+        this_.$router.push('/admin/category/manage');
       });
     }
   },
@@ -2290,6 +2290,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ManageCategories",
+  meta: {
+    title: 'Manage Categories'
+  },
   data: function data() {
     return {
       selected: [],
@@ -2561,7 +2564,7 @@ __webpack_require__.r(__webpack_exports__);
           icon: 'success',
           title: response.data
         });
-        ThisOrigin.$router.push('/post/manage');
+        ThisOrigin.$router.push('/admin/post/manage');
       });
     },
     thumbnailLoad: function thumbnailLoad(event) {
@@ -2736,7 +2739,7 @@ __webpack_require__.r(__webpack_exports__);
           icon: 'success',
           title: response.data
         });
-        this_.$router.push('/post/manage');
+        this_.$router.push('/admin/post/manage');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -64907,7 +64910,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "btn btn-primary float-right",
-                attrs: { to: "/category/manage" }
+                attrs: { to: "/admin/category/manage" }
               },
               [_vm._v("Manage Categories")]
             )
@@ -65111,7 +65114,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "btn btn-primary float-right",
-                attrs: { to: "/category/manage" }
+                attrs: { to: "/admin/category/manage" }
               },
               [_vm._v("Manage Category")]
             )
@@ -65315,7 +65318,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "btn btn-primary float-right",
-                attrs: { to: "/category/add" }
+                attrs: { to: "/admin/category/add" }
               },
               [_vm._v("Add New")]
             )
@@ -65463,7 +65466,7 @@ var render = function() {
                           {
                             staticClass: "btn btn-warning btn-sm",
                             attrs: {
-                              to: "/category/edit/" + category.slug,
+                              to: "/admin/category/edit/" + category.slug,
                               type: "button"
                             }
                           },
@@ -65613,7 +65616,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "btn btn-primary float-right",
-                attrs: { to: "/post/manage" }
+                attrs: { to: "/admin/post/manage" }
               },
               [_vm._v("Manage Posts")]
             )
@@ -65987,7 +65990,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "btn btn-primary float-right",
-                attrs: { to: "/post/manage" }
+                attrs: { to: "/admin/post/manage" }
               },
               [_vm._v("Manage Posts")]
             )
@@ -66361,7 +66364,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "btn btn-primary float-right",
-                attrs: { to: "/post/add" }
+                attrs: { to: "/admin/post/add" }
               },
               [_vm._v("Add New")]
             )
@@ -66527,7 +66530,7 @@ var render = function() {
                           {
                             staticClass: "btn btn-warning btn-sm",
                             attrs: {
-                              to: "/post/edit/" + post.slug,
+                              to: "/admin/post/edit/" + post.slug,
                               type: "button"
                             }
                           },
@@ -83252,6 +83255,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   routes: _router_routes__WEBPACK_IMPORTED_MODULE_1__["routes"],
   'mode': 'history'
 });
+router.beforeEach(function (to, from, next) {
+  document.title = to.meta.title;
+  next();
+});
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 var app = new Vue({
   el: '#app',
@@ -83887,6 +83894,9 @@ Vue.mixin({
       }).then(function (result) {
         if (result.isConfirmed) callback();
       });
+    },
+    subStrWithHtml: function subStrWithHtml(text, length, s) {
+      return text.substring(0, length) + s;
     }
   }
 });
@@ -83918,26 +83928,47 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [{
-  path: '/home',
-  component: _components_admin_Home__WEBPACK_IMPORTED_MODULE_0__["default"]
+  path: '/admin/home',
+  component: _components_admin_Home__WEBPACK_IMPORTED_MODULE_0__["default"],
+  meta: {
+    title: 'Dashboard'
+  }
 }, {
-  path: '/category/manage',
-  component: _components_admin_category_ManageCategories__WEBPACK_IMPORTED_MODULE_1__["default"]
+  path: '/admin/category/manage',
+  component: _components_admin_category_ManageCategories__WEBPACK_IMPORTED_MODULE_1__["default"],
+  meta: {
+    title: 'Manage Categories'
+  }
 }, {
-  path: '/category/add',
-  component: _components_admin_category_AddCategory__WEBPACK_IMPORTED_MODULE_2__["default"]
+  path: '/admin/category/add',
+  component: _components_admin_category_AddCategory__WEBPACK_IMPORTED_MODULE_2__["default"],
+  meta: {
+    title: 'Add Category'
+  }
 }, {
-  path: '/category/edit/:slug',
-  component: _components_admin_category_EditCategory__WEBPACK_IMPORTED_MODULE_3__["default"]
+  path: '/admin/category/edit/:slug',
+  component: _components_admin_category_EditCategory__WEBPACK_IMPORTED_MODULE_3__["default"],
+  meta: {
+    title: 'Update Category'
+  }
 }, {
-  path: '/post/manage',
-  component: _components_admin_post_ManagePosts__WEBPACK_IMPORTED_MODULE_4__["default"]
+  path: '/admin/post/manage',
+  component: _components_admin_post_ManagePosts__WEBPACK_IMPORTED_MODULE_4__["default"],
+  meta: {
+    title: 'Manage Posts'
+  }
 }, {
-  path: '/post/add',
-  component: _components_admin_post_AddPost__WEBPACK_IMPORTED_MODULE_5__["default"]
+  path: '/admin/post/add',
+  component: _components_admin_post_AddPost__WEBPACK_IMPORTED_MODULE_5__["default"],
+  meta: {
+    title: 'Add Post'
+  }
 }, {
-  path: '/post/edit/:slug',
-  component: _components_admin_post_EditPost__WEBPACK_IMPORTED_MODULE_6__["default"]
+  path: '/admin/post/edit/:slug',
+  component: _components_admin_post_EditPost__WEBPACK_IMPORTED_MODULE_6__["default"],
+  meta: {
+    title: 'Update Post'
+  }
 }];
 
 /***/ }),
