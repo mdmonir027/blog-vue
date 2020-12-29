@@ -60,4 +60,10 @@ class SiteController extends Controller
         $category = Category::where('slug' , $slug)->get(['slug' , 'name'])->first();
         return response()->json(['category' => $category], 200);
     }
+
+    public function search_post($keyword){
+
+        $posts = Post::where('status' , 'published')->where('title' , 'like' , '%'.$keyword.'%')->paginate($this->postPerPage);
+        return response()->json(['posts' => $posts], 200);
+    }
 }

@@ -1,3 +1,7 @@
 {
-    "/js/fronted.js": "/js/fronted.js"
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/js/fronted.js": "/js/fronted.js",
+    "/js/public.js": "/js/public.js",
+    "/css/public.css": "/css/public.css"
 }

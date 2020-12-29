@@ -61,7 +61,7 @@
                             </div>
                         </tr>
                         <tr v-if="emptyData()">
-                            <td colspan="8" class="text-center text-danger">
+                            <td colspan="9" class="text-center text-danger">
                                 <h3>No Data Available</h3>
                             </td>
                         </tr>

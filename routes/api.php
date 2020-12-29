@@ -35,3 +35,4 @@ Route::get('/public/posts' , [\App\Http\Controllers\Site\SiteController::class ,
 Route::get('/public/post/{slug}' , [\App\Http\Controllers\Site\SiteController::class , 'post'])->name('public.post');
 Route::get('/public/post/category/{slug}' , [\App\Http\Controllers\Site\SiteController::class , 'category_post'])->name('public.category.post');
 Route::get('/public/category/{slug}' , [\App\Http\Controllers\Site\SiteController::class , 'category'])->name('public.category');
+Route::get('/public/posts/search/{keyword}' , [\App\Http\Controllers\Site\SiteController::class , 'search_post'])->name('public.post.search');
